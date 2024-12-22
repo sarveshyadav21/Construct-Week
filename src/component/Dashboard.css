@@ -1,0 +1,57 @@
+.dashboard {
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(253,245,243,255);
+  padding: 10px;
+}
+
+.navbar button {
+  background-color: #f5bbbb;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.navbar button:hover {
+  background-color: #f68686;
+}
+
+.home-section, .templates-section, .profile-section {
+  margin-top: 20px;
+}
+
+.templates {
+  display: flex;
+  gap: 10px;
+}
+
+.template {
+  background-color: #f3c1c1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.template:hover {
+  background-color: #f6a5a5;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #f97373;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  height: 20px;
+}
+
+.progress {
+  background-color: #4caf50;
+  height: 20px;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+}

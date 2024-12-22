@@ -1,0 +1,10 @@
+input[type="text"],
+input[type="password"],
+input[type="email"],
+button[type="submit"] {
+    width: 200px; 
+}
+
+button[type="submit"] {
+    width: 100px; 
+}
