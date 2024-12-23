@@ -9,7 +9,9 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
+      console.log("Sending login request with:", { email, password });
       const response = await axios.post("https://resume-builder-dx6w.onrender.com/login", { email, password });
+      console.log("Response received:", response.data);
       if (response.data.success) {
         setIsLoggedIn(true);
         setUser({ email });
@@ -18,6 +20,7 @@ export const AuthProvider = ({ children }) => {
         return { success: false, message: response.data.message };
       }
     } catch (error) {
+      console.error("Error during login request:", error);
       return { success: false, message: "An error occurred. Please try again." };
     }
   };
