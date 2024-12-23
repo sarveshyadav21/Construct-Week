@@ -3,22 +3,24 @@ import { AuthContext } from "../asset/AuthContext";
 import "./Dashboard.css";
 
 const Dashboard = ({ handleLogout }) => {
-  const { logout } = useContext(AuthContext);
+  const { user, getResumes, logout } = useContext(AuthContext);
   const [activeSection, setActiveSection] = useState("home");
   const [file, setFile] = useState(null);
   const [score, setScore] = useState(0);
   const [uploadHistory, setUploadHistory] = useState([]);
-  const [user, setUser] = useState({ name: "John Doe", email: "john.doe@example.com" });
 
   useEffect(() => {
-    // Fetch user data and upload history from the server
-    // For now, we use static data
-    setUser({ name: "John Doe", email: "john.doe@example.com" });
-    setUploadHistory([
-      { name: "Resume1.pdf", date: "2023-01-01" },
-      { name: "Resume2.docx", date: "2023-02-15" },
-    ]);
-  }, []);
+    const fetchUploadHistory = async () => {
+      const response = await getResumes();
+      if (response.success) {
+        setUploadHistory(response.resumes);
+      } else {
+        console.error(response.message);
+      }
+    };
+
+    fetchUploadHistory();
+  }, [getResumes]);
 
   const handleLogoutClick = () => {
     logout();
@@ -45,42 +47,32 @@ const Dashboard = ({ handleLogout }) => {
 
       {activeSection === "home" && (
         <div className="home-section">
-          <h1>Welcome to the Resume Editor</h1>
-          <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileUpload} />
-          {file && (
-            <div>
-              <p>Uploaded File: {file.name}</p>
-              <div className="progress-bar">
-                <div className="progress" style={{ width: `${score}%` }}>
-                  {score}%
-                </div>
-              </div>
-            </div>
-          )}
+          <h1>Welcome to the Dashboard</h1>
+          {/* Other home section content */}
         </div>
       )}
 
       {activeSection === "templates" && (
         <div className="templates-section">
-          <h2>Resume Templates</h2>
-          <div className="templates">
-            <div className="template">Template 1</div>
-            <div className="template">Template 2</div>
-            <div className="template">Template 3</div>
-          </div>
+          <h1>Templates</h1>
+          <ul>
+            <li><a href="/path/to/ATS_Classic_HR_Resume.pdf" download>ATS Classic HR Resume</a></li>
+            <li><a href="/path/to/Color_Block_Resume.pdf" download>Color Block Resume</a></li>
+            <li><a href="/path/to/Industry_Manager_Resume.pdf" download>Industry Manager Resume</a></li>
+          </ul>
         </div>
       )}
 
       {activeSection === "profile" && (
         <div className="profile-section">
-          <h2>Profile</h2>
+          <h1>Profile</h1>
           <p>Name: {user.name}</p>
           <p>Email: {user.email}</p>
-          <h3>Upload History</h3>
+          <h2>Upload History</h2>
           <ul>
             {uploadHistory.map((file, index) => (
               <li key={index}>
-                {file.name} - {file.date}
+                <a href={file.url} download>{file.name}</a> - {file.date}
               </li>
             ))}
           </ul>
