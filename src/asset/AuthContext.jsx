@@ -20,22 +20,23 @@ export const AuthProvider = ({ children }) => {
         return { success: false, message: response.data.message };
       }
     } catch (error) {
-      console.error("Error during login request:", error, message);
+      console.error("Error during login request:", error);
       return { success: false, message: "An error occurred. Please try again." };
     }
   };
 
   const signup = async (name, email, password) => {
     try {
+      console.log("Sending signup request with:", { name, email, password });
       const response = await axios.post("https://resume-builder-dx6w.onrender.com/signup", { name, email, password });
+      console.log("Response received:", response.data);
       if (response.data.success) {
         return { success: true };
       } else {
         return { success: false, message: response.data.message };
-        
       }
     } catch (error) {
-      console.error("Error during login request:", error, message);
+      console.error("Error during signup request:", error);
       return { success: false, message: "An error occurred. Please try again." };
     }
   };
