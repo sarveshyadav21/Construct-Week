@@ -48,7 +48,7 @@ const Dashboard = ({ handleLogout }) => {
       {activeSection === "home" && (
         <div className="home-section">
           <h1>Welcome to the Dashboard</h1>
-          {/* Other home section content */}
+          <h2>Upload a Resume</h2>
         </div>
       )}
 
