@@ -12,7 +12,7 @@ const LoginForm = ({ setActiveForm }) => {
     e.preventDefault();
     const response = await login(email, password);
     setActiveForm("dashboard");
-    if (response.success) {
+    if (response.status=="200"){
       setActiveForm("dashboard");
     }else{
       setError(response.message);
