@@ -16,7 +16,7 @@ const SignupForm = ({ setActiveForm }) => {
       return;
     }
     const response = await signup(name, email, password);
-    if (!response.success) {
+    if (response.status !== "201") {
       setError(response.message);
     } else {
       setError(""); // Clear any previous errors
