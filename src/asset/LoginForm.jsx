@@ -11,9 +11,8 @@ const LoginForm = ({ setActiveForm }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     const response = await login(email, password);
-    if (response.success) {
-      setActiveForm("dashboard");
-    } else {
+    setActiveForm("dashboard");
+    if (!response.success) {
       setError(response.message);
     }
   };
