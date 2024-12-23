@@ -24,7 +24,7 @@ const App = () => {
             </div>
             {console.log("isLoggedIn:", isLoggedIn)}
             {console.log("activeForm:", activeForm)}
-            {activeForm === "dashboard" ? (
+            {activeForm === "dashboard" && isLoggedIn ? (
               <Dashboard handleLogout={handleLogout} />
             ) : (
               <>
