@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
         return { success: false, message: response.data.message };
       }
     } catch (error) {
-      console.error("Error during login request:", error);
+      console.error("Error during login request:", error, message);
       return { success: false, message: "An error occurred. Please try again." };
     }
   };
@@ -32,8 +32,10 @@ export const AuthProvider = ({ children }) => {
         return { success: true };
       } else {
         return { success: false, message: response.data.message };
+        
       }
     } catch (error) {
+      console.error("Error during login request:", error, message);
       return { success: false, message: "An error occurred. Please try again." };
     }
   };
