@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
       console.log("Sending login request with:", { email, password });
       const response = await axios.post("https://resume-builder-dx6w.onrender.com/login", { email, password });
       console.log("Response received:", response.data);
-      if (response.data.success) {
+      if (response.status == "200") {
         setIsLoggedIn(true);
         setUser({ email });
         return { success: true };
